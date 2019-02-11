@@ -14,9 +14,36 @@
 
   <p class="font-italic font-weight-light">What is the longest word you can find?</p>
   <div class="input-group mb-3">
-    <input type="text" name="attempt" class="form-control" placeholder="Your longest word"aria-describedby="button-play">
+    <input type="text" name="attempt" class="form-control" placeholder="Your longest word" id="attempt" aria-describedby="button-play">
     <div class="input-group-append">
       <button class="btn btn-outline-primary" type="submit" id="button-play">Play</button>
     </div>
   </div>
 </form>
+
+<script>
+  const items = document.querySelectorAll('.letter');
+  const attempt = document.querySelector('#attempt')
+
+  const toggleInactiveOnClick = (event) => {
+    event.currentTarget.classList.toggle('inactive');
+    const letter = event.currentTarget.innerHTML;
+    if (event.currentTarget.classList.contains('inactive')) {
+      attempt.value += letter;
+    } else if (attempt.value.length === 1) {
+      attempt.value = null;
+    } else {
+      attemptLetters = attempt.value.split("")
+      for( var i = 0; i < attemptLetters.length-1; i++){
+         if ( attemptLetters[i] === letter) {
+           attemptLetters.splice(i, 1);
+         }
+        attempt.value = attemptLetters.join("");
+      }
+    }
+  };
+
+  items.forEach((item) => {
+    item.addEventListener('click', toggleInactiveOnClick);
+  });
+</script>
