@@ -1,0 +1,21 @@
+<h1>Result</h1>
+
+
+<% case @result[:message] %>
+  <% when "ok" then %>
+    <p><span>Congratulation!</span> <%= @attempt %> is an English word!</p>
+    <p>Time taken to answer: <%= @result[:time] %></p>
+    <p>Your score: <%= @result[:score] %></p>
+  <% when "not an english word" %>
+    <p>Sorry but <span><%= @attempt %></span> does not seems to be a valid English word...</p>
+  <% when "not included" %>
+    <p>Sorry but <span><%= @attempt %></span> can't be build out of <%= @grid %></p>
+<% end %>
+
+<p><%= link_to 'Play again', '/new' %></p>
+
+<!-- puts "Your word: #{attempt}"
+puts "Time Taken to answer: #{result[:time]}"
+puts "Your score: #{result[:score]}"
+puts "Message: #{result[:message]}" -->
+
