@@ -26,21 +26,19 @@
   const attempt = document.querySelector('#attempt')
 
   const toggleInactiveOnClick = (event) => {
-    event.currentTarget.classList.toggle('inactive');
     const letter = event.currentTarget.innerHTML;
-    if (event.currentTarget.classList.contains('inactive')) {
+    if (event.currentTarget.classList.contains('inactive') === false) {
       attempt.value += letter;
-    } else if (attempt.value.length === 1) {
-      attempt.value = null;
     } else {
-      attemptLetters = attempt.value.split("")
-      for( var i = 0; i < attemptLetters.length-1; i++){
+      const attemptLetters = attempt.value.split("")
+      for( var i = 0; i < attemptLetters.length; i++){
          if ( attemptLetters[i] === letter) {
            attemptLetters.splice(i, 1);
          }
         attempt.value = attemptLetters.join("");
       }
     }
+    event.currentTarget.classList.toggle('inactive');
   };
 
   items.forEach((item) => {
